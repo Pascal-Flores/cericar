@@ -9,7 +9,12 @@ class mainController
 		return context::SUCCESS;
 	}
 
+	public static function superTest($request, $context) {
+		$context->param1 = $context['param1'];
+		$context->param2 = $context['param2'];
 
+		return context::SUCCESS;
+	}
 
 	public static function index($request,$context){
 		
