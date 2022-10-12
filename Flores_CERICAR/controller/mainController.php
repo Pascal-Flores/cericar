@@ -10,8 +10,8 @@ class mainController
 	}
 
 	public static function superTest($request, $context) {
-		$context->param1 = $context['param1'];
-		$context->param2 = $context['param2'];
+		$context->param1 = $request['param1'];
+		$context->param2 = $request['param2'];
 
 		return context::SUCCESS;
 	}
