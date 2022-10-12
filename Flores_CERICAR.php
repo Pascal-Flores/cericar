@@ -1,37 +1,39 @@
 <?php
-//nom de l'application
-$nameApp = "Flores_CERICAR";
 
-//action par défaut
-$action = "index";
+// constants definitions
+$appName = "Flores_CERICAR";
 
+// dependencies inclusion|requirements 
+require_once "lib/core.php";
+require_once "$appName/controller/mainController.php";
+foreach(glob("$appName/model/*.class.php") as $includedModel)
+	include_once $includedModel; 
+
+// determination of the action to process
 if(key_exists("action", $_REQUEST))
-$action =  $_REQUEST['action'];
-
-require_once 'lib/core.php';
-require_once $nameApp.'/controller/mainController.php';
-
-foreach(glob($nameApp.'/model/*.class.php') as $model)
-	include_once $model ;   
+	$action =  $_REQUEST['action'];
+else 
+	$action = "index";
 
 session_start();
 
 $context = context::getInstance();
-$context->init($nameApp);
+$context->init($appName);
 
-$view=$context->executeAction($action, $_REQUEST);
-
+$view = $context->executeAction($action, $_REQUEST);
 //traitement des erreurs de bases, reste a traiter les erreurs d'inclusion
-if($view===false)
+if($view === false)
 {
-	echo "Une grave erreur s'est produite, il est probable que l'action ".$action." n'existe pas...";
+	echo "Error : action $action does not exist";
 	die;
 }
 //inclusion du layout qui va lui meme inclure le template view
-elseif($view!=context::NONE)
+elseif($view != context::NONE)
 {
-	$template_view=$nameApp."/view/".$action.$view.".php";
-	include($nameApp."/layout/".$context->getLayout().".php");
+	$template_view = "$appName/view/$action$view.php";
+	include("$appName/layout/{$context->getLayout()}.php");
 }
+else 
+	echo "Error : something went wrong";
 
 ?>
