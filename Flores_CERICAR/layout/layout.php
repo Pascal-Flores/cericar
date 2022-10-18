@@ -22,8 +22,6 @@
         ?>
         <footer class='phpStatusBanner' style='width : 100%; position : absolute; bottom : 0; text-align : center;'>
           <?php 
-            echo isset($context->{$action.'Errors'});
-
             if ($context->{$action.'Errors'} != []) {
               foreach($context->{$action.'Errors'} as $error) {
                 echo "<p>$error</p>";
