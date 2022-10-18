@@ -16,13 +16,24 @@
      <?php endif; ?>
 
     <div id="page">
-      <?php if($context->error): ?>
-      	<div id="flash_error" class="error">
-        	<?php echo " $context->error !!!!!" ?>
-      	</div>
-      <?php endif; ?>
       <div id="page_maincontent">	
-      	<?php include($template_view); ?>
+      	<?php 
+          include($template_view);
+        ?>
+        <footer class='phpStatusBanner' style='width : 100%; position : absolute; bottom : 0; text-align : center;'>
+          <?php 
+            echo isset($context->{$action.'Errors'});
+
+            if ($context->{$action.'Errors'} != []) {
+              foreach($context->{$action.'Errors'} as $error) {
+                echo "<p>$error</p>";
+              }
+            }
+            else {
+              echo "Tout s'est bien passé :)))))";
+            }
+          ?>
+        </footer>;
       </div>
     </div>
       
