@@ -1,7 +1,7 @@
 <?php
 
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
+//ini_set('display_errors', 0);
+//ini_set('display_startup_errors', 0);
 
 // constants definitions
 $appName = "Flores_CERICAR";
@@ -30,12 +30,17 @@ if($view === false)
 	echo "Error : action $action does not exist";
 	die;
 }
+elseif($view == context::ERROR) {
+	$template_view = "$appName/view/$action$view.php";
+	include("$appName/layout/{$context->getLayout()}.php");
+}
 //inclusion du layout qui va lui meme inclure le template view
 elseif($view != context::NONE)
 {
 	$template_view = "$appName/view/$action$view.php";
 	include("$appName/layout/{$context->getLayout()}.php");
 }
+
 else 
 	echo "Error : something went wrong";
 ?>
