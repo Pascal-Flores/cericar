@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+
 // constants definitions
 $appName = "Flores_CERICAR";
 
@@ -35,5 +38,4 @@ elseif($view != context::NONE)
 }
 else 
 	echo "Error : something went wrong";
-
 ?>
