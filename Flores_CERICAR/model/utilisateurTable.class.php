@@ -12,16 +12,23 @@ class utilisateurTable {
   	$em = dbconnection::getInstance()->getEntityManager() ;
 
 	$userRepository = $em->getRepository('utilisateur');
-	$user = $userRepository->findOneBy(array('identifiant' => $login, 'pass' => sha1($pass)));	
+	$user = $userRepository->findOneBy(array('identifiant' => $login, 'pass' => /*sha1(*/$pass)/*)*/);	
 	
-	if ($user == false){
+	if ($user == false)
 		throw new NoResultException();
-			   }
+	
 	return $user; 
 	}
 
-  
+  public static function getUserById($id) {
+	$em = dbconnection::getInstance()->getEntityManager() ;
+
+	$userRepository = $em->getRepository('utilisateur');
+	$user = $userRepository->findOneBy(array('identifiant' => $id) );	
+	
+	if ($user == false)
+		throw new NoResultException();
+	
+	return $user; 
+  }
 }
-
-
-?>

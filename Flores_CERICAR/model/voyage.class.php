@@ -17,7 +17,10 @@ class voyage{
 	/** @Column(type="integer") */ 
 	public $conducteur;
 		
-	/** @Column(type="integer") */ 
+	/**
+	* @ManyToOne(targetEntity="trajet")
+	* @JoinColumn(name="trajet", referencedColumnName="id")
+	*/
 	public $trajet;
 
 	/** @Column(type="integer") */ 
@@ -29,7 +32,7 @@ class voyage{
 	/** @Column(type="integer") */ 
 	public $heuredepart;
 
-	/** @Column(type="string", length="500") */ 
+	/** @Column(type="string", length=500) */ 
 	public $contraintes;
 
 }

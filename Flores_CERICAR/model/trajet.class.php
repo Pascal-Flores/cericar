@@ -14,6 +14,7 @@ class trajet{
 	 */ 
 	public $id;
 
+	
 	/** @Column(type="string", length=25) */ 
 	public $depart;
 		

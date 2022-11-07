@@ -14,10 +14,14 @@ class reservation{
 	 */ 
 	public $id;
 
-	/** @Column(type="integer") */ 
+	/** @ManyToOne(targetEntity="voyage")
+	 *  @JoinColumn(name="voyage", referencedColumnName="id") 
+	*/
 	public $voyage;
-		
-	/** @Column(type="integer") */ 
+		 
+	/** @ManyToOne(targetEntity="utilisateur") 
+	 *  @JoinColumn(name="voyageur", referencedColumnName="id")
+	*/
 	public $voyageur;
     
 }
